@@ -1,0 +1,412 @@
+/****************************************
+ * Global
+ ****************************************/
+a img {
+    color: #777;
+    border: 0px;
+}
+
+a:link,a:active,a:visited {
+    color: #777;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
+a:hover {
+    color: #777;
+    border-bottom: 2px solid;
+}
+
+h2 {
+    color: #777;
+}
+
+h3 {
+    font-size: 1.2em;
+    color: #777;
+    margin-top: 0;
+    padding-right: 10px;
+}
+
+html,body {
+    margin: 0px;
+    padding: 0px;
+    background: url(background.gif) repeat;
+    color: #777;
+    font-size: 11px;
+    font-family: "gill sans", verdana, sans-serif;
+}
+
+tr {
+    vertical-align: top;
+    text-align: left;
+}
+
+.no_hover a:hover {
+    border: 0;
+}
+
+.comment {
+
+}
+
+.comment_author {
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.comment_content {
+    margin-left: 2px;
+    padding-left: 2px;
+}
+
+.comment_date {
+
+}
+
+
+/****************************************
+ * Photo page
+ ****************************************/
+.photo {
+
+}
+
+.photo #prevLink,.photo #nextLink {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    outline: none;
+}
+
+.photo #prevLink {
+    left: 0;
+}
+
+.photo #prevLink:hover {
+    background: transparent url(prevlabel.gif) no-repeat 0 15%;
+    border: 0px;
+}
+
+.photo #nextLink {
+    right: 0;
+}
+
+.photo #nextLink:hover {
+    background: transparent url(nextlabel.gif) no-repeat 100% 15%;
+    border: 0px;
+}
+
+/****************************************
+ * Tags
+ ****************************************/
+#tag_container {
+    background: #ECECEC;
+    width: 640px;
+    padding: 20px 50px 20px 50px;
+    text-align: center;
+    line-height: 3.0em;
+}
+
+.tag_xlarge {
+    font-size: 3.0em;
+    color: #FFF;
+    font-weight: 500;
+}
+
+.tag_large {
+    font-size: 2.5em;
+    color: #DDD;
+    font-weight: 400;
+}
+
+.tag_medium {
+    font-size: 2.0em;
+    color: #BBB;
+    font-weight: 300;
+}
+
+.tag_small {
+    font-size: 1.5em;
+    color: #999;
+    font-weight: 200;
+}
+
+.tag_xsmall {
+    font-size: 1.2em;
+    color: #777;
+    font-weight: 100;
+}
+
+/****************************************
+ * Thumbnails
+ ****************************************/
+#thumbnail_container {
+    background: #ECECEC;
+    width: 730px;
+    padding: 10px;
+    text-align: center;
+}
+
+#thumbnail_container a:hover {
+    border: 0;
+}
+
+#thumbnail_container table {
+    text-align: left;
+}
+
+.thumbnail {
+    padding: 2px;
+    margin: 4px;
+    background: #fff;
+    border-right: 2px solid #999;
+    border-bottom: 2px solid #999;
+}
+
+.thumbnail:hover {
+    padding: 3px;
+    margin: 3px;
+}
+
+/****************************************
+ * Tool tips
+ ****************************************/
+.tip {
+    color: #fff;
+    width: 250px;
+    z-index: 1300;
+    opacity: .9;
+}
+
+.tip-title {
+    font-weight: bold;
+    font-size: 11px;
+    margin: 0;
+    padding: 8px 8px 4px;
+    background: #ECECEC;
+}
+
+.tip-text {
+    font-size: 11px;
+    padding: 4px 8px 8px;
+    background: #ECECEC;
+}
+
+#centercontent {
+    float: left;
+    font-size: 1em;
+    background: #ECECEC;
+    padding-bottom: 5px;
+}
+
+#comment_description {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#comment_thumb {
+    background: #fff;
+    padding: 1px;
+    float: right;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+#comment_title {
+    font-size: 1.5em;
+    border-bottom: 1px solid;
+    text-transform: lowercase;
+}
+
+/** **/
+#comment_wrapper {
+    width: 340px;
+    padding: 5px;
+}
+
+/****************************************
+ * Layout
+ ****************************************/
+#container {
+    position: relative;
+    margin: 5px;
+}
+
+#footer {
+    width: 98%;
+    height: 15px;
+    padding: 4px 1% 0px 1%;
+    text-align: center;
+    color: #777;
+    font-size: .9em;
+    float: left;
+    margin-top: 10px;
+}
+
+#footer a {
+    color: #444;
+}
+
+#header {
+    float: right;
+    font-size: 1.0em;
+    background: #ECECEC;
+    padding: 5px;
+}
+
+#header_menu {
+    float: right;
+    font-size: 1.0em;
+    padding: 0px 0px 3px 0px;
+}
+
+#header_menu li {
+    padding: 0px 0px 0px 3px;
+    display: inline;
+}
+
+#header_menu .selected {
+    border-bottom: 2px solid;
+    padding-bottom: 2px;
+}
+
+/****************************************
+ * Header
+ ****************************************/
+#header_title {
+    float: left;
+}
+
+/****************************************
+ * Comments
+ ****************************************/
+#info_comments {
+    position: absolute;
+    z-index: 99;
+    background: #ECECEC;
+    overflow: auto;
+    text-align: left;
+    top: 15px;
+    left: 15px;
+    right: 10px;
+    bottom: 15px;
+    padding: 15px;
+    opacity: .85;
+    filter: alpha(opacity=85);
+    border: 10px solid #ECECEC;
+    visibility: hidden;
+}
+
+
+
+#info_comments .clear {
+    clear: both;
+    position: relative;
+}
+
+
+#info_comments .tags li {
+    list-style-type: none;
+    display: inline;
+    padding-right: 4px;
+}
+
+#info_comments li {
+    list-style-type: none;
+    padding-bottom: 15px;
+}
+
+.close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: block;
+}
+
+#info_comments .heading {
+    font-size: 1.6em;
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
+#info_comments .thumb img {
+    border: 2px solid;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    float: left;
+}
+
+#info_comments tr.alt {
+    background: #ECECEC;
+}
+
+#comment_form {
+    display: none;
+}
+
+#leftcontent {
+    float: left;
+}
+
+#page {
+    background: #fff;
+    padding: 15px;
+    width: 745px;
+    text-align: center;
+    position: relative;
+    clear: both;
+}
+
+/****************************************
+ * Pages
+ ****************************************/
+#page_header {
+    background: #ECECEC;
+    padding: 10px;
+    width: 755px;
+}
+
+#page_meta,#page_meta a {
+    text-align: center;
+    clear: both;
+    white-space: nowrap;
+    width: 765px;
+    padding: 5px;
+}
+
+#page_nav {
+    padding: 5px;
+    float: right;
+}
+
+#page_title {
+    font-size: 2.0em;
+    text-transform: lowercase;
+    font-family: Verdana, sans-serif;
+}
+
+#page2 {
+    background: #ECECEC;
+    padding: 15px;
+    width: 745px;
+    text-align: center;
+}
+
+#rightcontent {
+    float: right;
+}
+
+#wrapper {
+    text-align: left;
+    margin: 0px auto -15px;
+    width: 775px;
+    padding: 15px;
+}
+
+#wrapper,#photos {
+    padding: 15px;
+}
