@@ -40,8 +40,8 @@ The popup slideshow gives a distraction free view of your photos.
 ![Slideshow](http://mcarruth.github.io/flogr/img/flogr-slideshow-sm.jpeg "Slideshow")
 
 ##Installation
-1. Download and unpack the zip locally
-2. Enter your flickr user id on like 27 of 'admin/config.php'
+- Download and unpack the zip locally
+- Enter your flickr user id on like 27 of 'admin/config.php'
 ```php
 /**
  * Your Flickr user id and/or group id 
@@ -51,7 +51,7 @@ The popup slideshow gives a distraction free view of your photos.
  */
 OPTIONAL_SETTING('FLICKR_USER_ID',  '<YOUR-FLICKR-USER-ID');
 ```
-3. Upload the zip contents to your webserver (ex. http://foo.com/bar)
+- Upload the zip contents to your webserver (ex. http://foo.com/bar)
 
 ##Questions
 The best way to get your question answered is the [flogr group](https://groups.google.com/forum/m/#!forum/flogr). 
