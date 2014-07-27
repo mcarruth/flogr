@@ -1,5 +1,7 @@
 #flogr
-flogr is a flexible script that displays your flickr photos in a customizable photo gallery you host on your website. If you use flickr but want to have a different look and feel for your photo gallery you may like flogr. See it in action [here](http://michael.thecarruthfamily.com/flogr).
+flogr is a php script that will display your public flickr photos in a customizable photo gallery you host on your website. If you use flickr but want to have a different look and feel for your photo gallery you may like flogr. 
+
+Go on and take it for a [spin](http://michael.thecarruthfamily.com/flogr).
 
 ##Main Features
 - Customizable photoblog interface for your flickr photos
@@ -11,20 +13,43 @@ flogr is a flexible script that displays your flickr photos in a customizable ph
 - Flickr tag cloud page
 - RSS 2.0 support
 
-##Demo
-Go on and take it for a [spin](http://michael.thecarruthfamily.com/flogr).
+##Screenshots
+###Main Page
+flogr ships with a light and dark theme and by default will show your most recent photo on the main page, but this is highly configurable.
+[http://mcarruth.github.io/flogr/img/flogr-main-sm.jpeg](http://mcarruth.github.io/flogr/img/flogr-main.jpeg)
 
-##Donate
-flogr is free to use. Want to share the love? You can by [feeding my caffeine addiction or buying me a beer](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9896181). Thanks!
+###Thumbnail View
+The number and size of the thumbnails are configurable.
+[http://mcarruth.github.io/flogr/img/flogr-recent-sm.jpeg](http://mcarruth.github.io/flogr/img/flogr-recent.jpeg)
 
-##Kudos
-- phpFlickr
-- Slimbox
-- jQuery
+###Tag Cloud
+You can choose to include only certain tags or all tags.
+[http://mcarruth.github.io/flogr/img/flogr-tags-sm.jpeg](http://mcarruth.github.io/flogr/img/flogr-tags.jpeg)
 
-##Requirements
-- PHP version 5.2 or >
-- MySQL (optional)
+###Map
+EXIF encoded photos are plotted on the map.
+[http://mcarruth.github.io/flogr/img/flogr-map-sm.jpeg](http://mcarruth.github.io/flogr/img/flogr-map.jpeg)
+
+###Slideshow
+The popup slideshow gives a distraction free view of your photos.
+[http://mcarruth.github.io/flogr/img/flogr-slideshow-sm.jpeg](http://mcarruth.github.io/flogr/img/flogr-slideshow.jpeg)
+
+##Installation
+1. Download and unpack the zip locally
+2. Enter your flickr user id on like 27 of 'admin/config.php'
+```php
+/**
+ * Your Flickr user id and/or group id 
+ *
+ * Note: A flickr id (not name) is needed.  You can lookup your id at 
+ * http://idgettr.com/.
+ */
+OPTIONAL_SETTING('FLICKR_USER_ID',  '<YOUR-FLICKR-USER-ID');
+```
+3. Upload the zip contents to your webserver (ex. http://foo.com/bar)
 
 ##Questions
 The best way to get your question answered is the [flogr group](https://groups.google.com/forum/m/#!forum/flogr). 
+
+##Donate
+flogr is free to use. Want to share the love? You can by [feeding my caffeine addiction or buying me a beer](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9896181). Thanks!
