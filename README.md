@@ -25,3 +25,6 @@ flogr is free to use. Want to share the love? You can by [feeding my caffeine ad
 ##Requirements
 - PHP version 5.2 or >
 - MySQL (optional)
+
+##Questions
+The best way to get your question answered is the [flogr group](https://groups.google.com/forum/m/#!forum/flogr). 
