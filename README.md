@@ -16,23 +16,23 @@ Go on and take it for a [spin](http://michael.thecarruthfamily.com/flogr).
 ##Screenshots
 ###Main Page
 flogr ships with a light and dark theme and by default will show your most recent photo on the main page, but this is highly configurable.
-[http://mcarruth.github.io/flogr/img/flogr-main-sm.jpeg](http://mcarruth.github.io/flogr/img/flogr-main.jpeg)
+![Main Page](http://mcarruth.github.io/flogr/img/flogr-main-sm.jpeg "Main Page")
 
 ###Thumbnail View
 The number and size of the thumbnails are configurable.
-[http://mcarruth.github.io/flogr/img/flogr-recent-sm.jpeg](http://mcarruth.github.io/flogr/img/flogr-recent.jpeg)
+![Thumbail View](http://mcarruth.github.io/flogr/img/flogr-recent-sm.jpeg "Thumbnail View")
 
 ###Tag Cloud
 You can choose to include only certain tags or all tags.
-[http://mcarruth.github.io/flogr/img/flogr-tags-sm.jpeg](http://mcarruth.github.io/flogr/img/flogr-tags.jpeg)
+![Tag Cloud](http://mcarruth.github.io/flogr/img/flogr-tags-sm.jpeg "Tag Cloud")
 
 ###Map
 EXIF encoded photos are plotted on the map.
-[http://mcarruth.github.io/flogr/img/flogr-map-sm.jpeg](http://mcarruth.github.io/flogr/img/flogr-map.jpeg)
+![Map](http://mcarruth.github.io/flogr/img/flogr-map-sm.jpeg "Map")
 
 ###Slideshow
 The popup slideshow gives a distraction free view of your photos.
-[http://mcarruth.github.io/flogr/img/flogr-slideshow-sm.jpeg](http://mcarruth.github.io/flogr/img/flogr-slideshow.jpeg)
+![Slideshow](http://mcarruth.github.io/flogr/img/flogr-slideshow-sm.jpeg "Slideshow")
 
 ##Installation
 1. Download and unpack the zip locally
