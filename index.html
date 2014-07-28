@@ -34,7 +34,9 @@
         <h1>
 <a name="flogr" class="anchor" href="#flogr"><span class="octicon octicon-link"></span></a>flogr</h1>
 
-<p>flogr is a flexible script that displays your flickr photos in a customizable photo gallery you host on your website. If you use flickr but want to have a different look and feel for your photo gallery you may like flogr. See it in action <a href="http://michael.thecarruthfamily.com/flogr">here</a>.</p>
+<p>flogr is a php script that will display your public flickr photos in a customizable photo gallery you host on your website. If you use flickr but want to have a different look and feel for your photo gallery you may like flogr. </p>
+
+<p>Go on and take it for a <a href="http://michael.thecarruthfamily.com/flogr">spin</a>.</p>
 
 <h2>
 <a name="main-features" class="anchor" href="#main-features"><span class="octicon octicon-link"></span></a>Main Features</h2>
@@ -49,32 +51,69 @@
 <li>Flickr tag cloud page</li>
 <li>RSS 2.0 support</li>
 </ul><h2>
-<a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h2>
+<a name="screenshots" class="anchor" href="#screenshots"><span class="octicon octicon-link"></span></a>Screenshots</h2>
 
-<p>Go on and take it for a <a href="http://michael.thecarruthfamily.com/flogr">spin</a>.</p>
+<h3>
+<a name="main-page" class="anchor" href="#main-page"><span class="octicon octicon-link"></span></a>Main Page</h3>
+
+<p>flogr ships with a light and dark theme and by default will show your most recent photo on the main page, but this is highly configurable.</p>
+
+<p><img src="http://mcarruth.github.io/flogr/img/flogr-main-sm.jpeg" alt="Main Page" title="Main Page"></p>
+
+<h3>
+<a name="thumbnail-view" class="anchor" href="#thumbnail-view"><span class="octicon octicon-link"></span></a>Thumbnail View</h3>
+
+<p>The number and size of the thumbnails are configurable.</p>
+
+<p><img src="http://mcarruth.github.io/flogr/img/flogr-recent-sm.jpeg" alt="Thumbail View" title="Thumbnail View"></p>
+
+<h3>
+<a name="tag-cloud" class="anchor" href="#tag-cloud"><span class="octicon octicon-link"></span></a>Tag Cloud</h3>
+
+<p>You can choose to include only certain tags or all tags.</p>
+
+<p><img src="http://mcarruth.github.io/flogr/img/flogr-tags-sm.jpeg" alt="Tag Cloud" title="Tag Cloud"></p>
+
+<h3>
+<a name="map" class="anchor" href="#map"><span class="octicon octicon-link"></span></a>Map</h3>
+
+<p>EXIF encoded photos are plotted on the map.</p>
+
+<p><img src="http://mcarruth.github.io/flogr/img/flogr-map-sm.jpeg" alt="Map" title="Map"></p>
+
+<h3>
+<a name="slideshow" class="anchor" href="#slideshow"><span class="octicon octicon-link"></span></a>Slideshow</h3>
+
+<p>The popup slideshow gives a distraction free view of your photos.</p>
+
+<p><img src="http://mcarruth.github.io/flogr/img/flogr-slideshow-sm.jpeg" alt="Slideshow" title="Slideshow"></p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<ul>
+<li>Download and unpack the zip locally</li>
+<li>Enter your flickr user id on like 27 of 'admin/config.php'</li>
+</ul><div class="highlight highlight-php"><pre><span class="sd">/**</span>
+<span class="sd"> * Your Flickr user id and/or group id </span>
+<span class="sd"> *</span>
+<span class="sd"> * Note: A flickr id (not name) is needed.  You can lookup your id at </span>
+<span class="sd"> * http://idgettr.com/.</span>
+<span class="sd"> */</span>
+<span class="nx">OPTIONAL_SETTING</span><span class="p">(</span><span class="s1">'FLICKR_USER_ID'</span><span class="p">,</span>  <span class="s1">'&lt;YOUR-FLICKR-USER-ID'</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>Upload the zip contents to your webserver (ex. <a href="http://foo.com/bar">http://foo.com/bar</a>)</li>
+</ul><h2>
+<a name="questions" class="anchor" href="#questions"><span class="octicon octicon-link"></span></a>Questions</h2>
+
+<p>The best way to get your question answered is the <a href="https://groups.google.com/forum/m/#!forum/flogr">flogr group</a>. </p>
 
 <h2>
 <a name="donate" class="anchor" href="#donate"><span class="octicon octicon-link"></span></a>Donate</h2>
 
 <p>flogr is free to use. Want to share the love? You can by <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=9896181">feeding my caffeine addiction or buying me a beer</a>. Thanks!</p>
-
-<h2>
-<a name="kudos" class="anchor" href="#kudos"><span class="octicon octicon-link"></span></a>Kudos</h2>
-
-<ul>
-<li>phpFlickr</li>
-<li>Slimbox</li>
-<li>jQuery</li>
-</ul><h2>
-<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
-
-<ul>
-<li>PHP version 5.2 or &gt;</li>
-<li>MySQL (optional)</li>
-</ul><h2>
-<a name="questions" class="anchor" href="#questions"><span class="octicon octicon-link"></span></a>Questions</h2>
-
-<p>The best way to get your question answered is the <a href="https://groups.google.com/forum/m/#!forum/flogr">flogr group</a>. </p>
       </section>
     </div>
 
