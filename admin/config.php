@@ -5,7 +5,7 @@
  * @author Mike Carruth <mikecarruth@gmail.com>
  * @version 2.5.7
  * @package Flogr
- * @link http://flogr.googlecode.com
+ * @link http://mcarruth.github.io/flogr/
  */
 
 /**
