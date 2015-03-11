@@ -1,7 +1,46 @@
-<h1 id="flogr">flogr</h1>
-<p>flogr is a php script that will display your public flickr photos in a customizable photo gallery you host on your website. If you use flickr but want to have a different look and feel for your photo gallery you may like flogr.</p>
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Flogr : Flogr - your flickr photos in a customizable photo gallery you host on your website.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Flogr</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mcarruth/flogr">View on GitHub</a>
+
+          <h1 id="project_title">Flogr</h1>
+          <h2 id="project_tagline">Flogr - your flickr photos in a customizable photo gallery you host on your website.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mcarruth/flogr/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mcarruth/flogr/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="flogr" class="anchor" href="#flogr" aria-hidden="true"><span class="octicon octicon-link"></span></a>flogr</h1>
+
+<p>flogr is a php script that will display your public flickr photos in a customizable photo gallery you host on your website. If you use flickr but want to have a different look and feel for your photo gallery you may like flogr. </p>
+
 <p>Go on and take it for a <a href="http://flogr.mikecarruth.org/">spin</a>.</p>
-<h2 id="main-features">Main Features</h2>
+
+<h2>
+<a id="main-features" class="anchor" href="#main-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Main Features</h2>
+
 <ul>
 <li>Customizable photoblog interface for your flickr photos</li>
 <li>Display all flickr photos, only photos with certain tags or only certain photosets</li>
@@ -12,17 +51,48 @@
 <li>Flickr tag cloud page</li>
 <li>RSS 2.0 support</li>
 </ul>
-<h2 id="installation">Installation</h2>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
 <ul>
 <li>Download and unpack the zip locally</li>
-<li>Enter your flickr user id on like 27 of 'admin/config.php' ```php /**</li>
-<li>Your Flickr user id and/or group id</li>
-<li></li>
-<li>Note: A flickr id (not name) is needed. You can lookup your id at</li>
-<li>http://idgettr.com/. */ OPTIONAL_SETTING('FLICKR_USER_ID', '&lt;YOUR-FLICKR-USER-ID'); ```</li>
-<li>Upload the zip contents to your webserver (ex. http://foo.com/bar)</li>
+<li>Enter your flickr user id on like 27 of 'admin/config.php'</li>
 </ul>
-<h2 id="questions">Questions</h2>
-<p>The best way to get your question answered is the <a href="https://groups.google.com/forum/m/#!forum/flogr">flogr group</a>.</p>
-<h2 id="donate">Donate</h2>
+
+<div class="highlight highlight-php"><pre><span class="pl-s2"><span class="pl-c">/**</span></span>
+<span class="pl-s2"><span class="pl-c"> * Your Flickr user id and/or group id </span></span>
+<span class="pl-s2"><span class="pl-c"> *</span></span>
+<span class="pl-s2"><span class="pl-c"> * Note: A flickr id (not name) is needed.  You can lookup your id at </span></span>
+<span class="pl-s2"><span class="pl-c"> * http://idgettr.com/.</span></span>
+<span class="pl-s2"><span class="pl-c"> */</span></span>
+<span class="pl-s2">OPTIONAL_SETTING(<span class="pl-s1"><span class="pl-pds">'</span>FLICKR_USER_ID<span class="pl-pds">'</span></span>,  <span class="pl-s1"><span class="pl-pds">'</span>&lt;YOUR-FLICKR-USER-ID<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<ul>
+<li>Upload the zip contents to your webserver (ex. <a href="http://foo.com/bar">http://foo.com/bar</a>)</li>
+</ul>
+
+<h2>
+<a id="questions" class="anchor" href="#questions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Questions</h2>
+
+<p>The best way to get your question answered is the <a href="https://groups.google.com/forum/m/#!forum/flogr">flogr group</a>. </p>
+
+<h2>
+<a id="donate" class="anchor" href="#donate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Donate</h2>
+
 <p>flogr is free to use. Want to share the love? You can by <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=9896181">feeding my caffeine addiction or buying me a beer</a>. Thanks!</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Flogr maintained by <a href="https://github.com/mcarruth">mcarruth</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
