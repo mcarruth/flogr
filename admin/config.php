@@ -86,7 +86,7 @@ REQUIRED_SETTING('FLOGR_MAIN_PHOTO_SIZE', 750);
 REQUIRED_SETTING('FLOGR_SLIDESHOW_PHOTO_QUALITY', 'Medium640');
 
 /* Photosets to include - separate multiple sets with commas. */
-OPTIONAL_SETTING('FLOGR_PHOTOSETS_INCLUDE', '');
+OPTIONAL_SETTING('FLOGR_PHOTOSETS_INCLUDE', 'Favorites');
 
 /* Number of tags to include in the tag cloud */
 REQUIRED_SETTING('FLOGR_TAGS_COUNT', 200);
