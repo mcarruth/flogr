@@ -13,6 +13,13 @@ Go on and take it for a [spin](http://flogr.mikecarruth.org/).
 - Flickr tag cloud page
 - RSS 2.0 support
 
+##Screenshots
+![Main](https://github.com/mcarruth/flogr/blob/gh-pages/images/main.png?raw=true)
+![Recent](https://github.com/mcarruth/flogr/blob/gh-pages/images/recent.png?raw=true)
+![Slide](https://github.com/mcarruth/flogr/blob/gh-pages/images/slide.png?raw=true)
+![Map](https://github.com/mcarruth/flogr/blob/gh-pages/images/map.png?raw=true)
+![Tag](https://github.com/mcarruth/flogr/blob/gh-pages/images/tag.png?raw=true)
+
 ##Installation
 - Download and unpack the zip locally
 - Enter your flickr user id on like 27 of 'admin/config.php'
