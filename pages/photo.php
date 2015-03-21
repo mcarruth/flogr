@@ -41,8 +41,8 @@ class Flogr_Photo extends Flogr_Page {
                 $photoSearchParams = array(
                     "user_id" => $userId,
                     "group_id" => FLICKR_GROUP_ID,
-                    "min_taken_date" => $this->info["dates"]["taken"] . ":00",
-                    "max_taken_date" => $this->info["dates"]["taken"] . ":59",
+                    "min_taken_date" => $this->info["dates"]["taken"],
+                    "max_taken_date" => $this->info["dates"]["taken"],
                     "sort" => $this->paramSort,
                     "extras" => FLOGR_PHOTO_EXTRAS,
                     "per_page" => 1,
