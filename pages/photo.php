@@ -51,7 +51,7 @@ class Flogr_Photo extends Flogr_Page {
                 $this->photoList = $this->phpFlickr->photos_search($photoSearchParams);
             } else {
                 // Get the first photo from the user and/or group using the defaults.
-                $this->photoList = $this->photoList ? $this->photoList : $this->get_photos(null, null, null, 1, null);
+                $this->photoList = $this->photoList ? $this->photoList : $this->get_photos(null, null, null, 2, null);
             }
         }
         
