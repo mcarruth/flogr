@@ -128,7 +128,7 @@ class Flogr_Page {
             //$flogr->logInfo("{$className} tests took {$totalRunTime}s");
         }
     }
-    
+
     function get_slideshow_thumbnails( $photos = null ) {
         $date = null;
         $thumbs = null;
@@ -146,12 +146,12 @@ class Flogr_Page {
                 $title = htmlspecialchars($photo['title'], ENT_QUOTES);
                 $titleLink = htmlspecialchars("<a href=index.php?photoId=" . $photo['id'] . ">" . $photo['title'] . " | " . $date . "</a><span class='ui-icon ui-icon-extlink'></span>", ENT_QUOTES);
                 if ( !$title ) { $title = 'untitled'; }
-                
+
                 $thumbs .=
                     "<a href='" . $this->phpFlickr->buildPhotoURL($photo, FLOGR_SLIDESHOW_PHOTO_QUALITY) .
-                    "' rel='lightbox-thumbnails' title='{$title} | ${date}' alt='{$title}' rev='{$titleLink}'>" .
-                        "<img class='thumbnail' src='" . 
-                        $this->phpFlickr->buildPhotoURL($photo, "square") . "'/>" .
+                    "' rel='lightbox-thumbnails' title='{$titleLink}' alt='{$title}'>" .
+                        "<img class='thumbnail' src='" .
+                        $this->phpFlickr->buildPhotoURL($photo, "square") . "' title='{$title}' />" .
                     "</a>";
                         
             }

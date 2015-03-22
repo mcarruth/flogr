@@ -34,7 +34,7 @@ OPTIONAL_SETTING('FLICKR_GROUP_ID', '');
  */
 REQUIRED_SETTING('SITE_TITLE',         'Flogr');
 REQUIRED_SETTING('SITE_DESCRIPTION',   'A photoblog application built on Flickr');
-REQUIRED_SETTING('SITE_THEME',         'blackstripe');
+REQUIRED_SETTING('SITE_THEME',         'blackstripe2');
 REQUIRED_SETTING('SITE_THEME_PATH',    'themes/' . SITE_THEME . '/');
 $url = "http://". $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
 REQUIRED_SETTING('SITE_URL',           substr($url, 0, strrpos($url, "/")));
@@ -66,7 +66,7 @@ REQUIRED_SETTING('FLOGR_EXIF', 'Make,Model,Software,Exposure,Aperture,Shutter Sp
 REQUIRED_SETTING('FLOGR_PHOTO_QUALITY', 'Medium640');
 
 /* Desired width of main photo */
-REQUIRED_SETTING('FLOGR_MAIN_PHOTO_SIZE', 750);
+REQUIRED_SETTING('FLOGR_MAIN_PHOTO_SIZE', 740);
 
 /*
  * Quality (resolution) of the photo in the slideshow.  Can me:

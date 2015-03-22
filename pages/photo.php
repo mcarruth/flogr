@@ -664,20 +664,6 @@ class Flogr_Photo extends Flogr_Page {
         }
 
         if ($scaleSize) {
-            if ($width > $height) {
-                // set width to scaleSize and scale height
-                $height *= $scaleSize / $width;
-                $width = $scaleSize;
-            } else if ($height > $width) {
-                // set height to scaleSize and scale width
-                $width *= $scaleSize / $height;
-                $height = $scaleSize;
-            }
-        }
-
-        if ($width > FLOGR_MAIN_PHOTO_SIZE) {
-            // set width to scaleSize and scale height
-            $scaleSize = FLOGR_MAIN_PHOTO_SIZE;
             $height *= $scaleSize / $width;
             $width = $scaleSize;
         }
