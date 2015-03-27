@@ -1,4 +1,4 @@
-<?php $p = new Profiler('Tags page load', 0, 2); ?>
+<?php $p = new Profiler('Map page load', 0, 2); ?>
 <?php
 require_once( 'photo.php' );
 ?>
@@ -7,10 +7,10 @@ require_once( 'photo.php' );
     //<![CDATA[
 
     function load() {
-        downloadUrl("index.php?type=map_data", function(data) {
-            var xml = data.responseXML;
+        $.get("index.php?type=map_data", function(data) {
+            var xml = data;
             var markers = xml.documentElement.getElementsByTagName("marker");
-            
+
             var map = new google.maps.Map(document.getElementById("map"), {
                 center: new google.maps.LatLng(markers[0].getAttribute("lat"), markers[0].getAttribute("lng")),
                 zoom: 8,
@@ -26,8 +26,8 @@ require_once( 'photo.php' );
                 var url = markers[i].getAttribute("url");
                 var html = markers[i].getAttribute("html");
                 var point = new google.maps.LatLng(
-                parseFloat(markers[i].getAttribute("lat")),
-                parseFloat(markers[i].getAttribute("lng")));
+                    parseFloat(markers[i].getAttribute("lat")),
+                    parseFloat(markers[i].getAttribute("lng")));
 
                 var marker = new google.maps.Marker({
                     map: map,
@@ -48,24 +48,6 @@ require_once( 'photo.php' );
             infoWindow.open(map, marker);
         });
     }
-
-    function downloadUrl(url, callback) {
-        var request = window.ActiveXObject ?
-            new ActiveXObject('Microsoft.XMLHTTP') :
-            new XMLHttpRequest;
-
-        request.onreadystatechange = function() {
-            if (request.readyState == 4) {
-                request.onreadystatechange = doNothing;
-                callback(request, request.status);
-            }
-        };
-
-        request.open('GET', url, true);
-        request.send(null);
-    }
-
-    function doNothing() {}
 
     //]]>
 </script>

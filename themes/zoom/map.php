@@ -10,7 +10,7 @@ require_once( 'photo.php' );
         $.get("index.php?type=map_data", function(data) {
             var xml = data;
             var markers = xml.documentElement.getElementsByTagName("marker");
-
+            
             var map = new google.maps.Map(document.getElementById("map"), {
                 center: new google.maps.LatLng(markers[0].getAttribute("lat"), markers[0].getAttribute("lng")),
                 zoom: 8,
@@ -26,8 +26,8 @@ require_once( 'photo.php' );
                 var url = markers[i].getAttribute("url");
                 var html = markers[i].getAttribute("html");
                 var point = new google.maps.LatLng(
-                    parseFloat(markers[i].getAttribute("lat")),
-                    parseFloat(markers[i].getAttribute("lng")));
+                parseFloat(markers[i].getAttribute("lat")),
+                parseFloat(markers[i].getAttribute("lng")));
 
                 var marker = new google.maps.Marker({
                     map: map,
