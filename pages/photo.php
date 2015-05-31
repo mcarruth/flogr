@@ -300,7 +300,7 @@ class Flogr_Photo extends Flogr_Page {
                     $exifData .= "</tr>";
                 }
             }
-            echo "<table>$exifData</table>";
+            echo "<table class='table'>$exifData</table>";
         }
     }
 

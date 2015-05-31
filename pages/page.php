@@ -193,46 +193,54 @@ class Flogr_Page {
         }
                 
         echo $thumbs;
-    }    
-    
-    function get_previous_page_link( $photos, $inner = 'prev' ) {
-    	$prevPage = $this->paramPage < $photos['pages'] ? $this->paramPage + 1 : 0;
-        
+    }
+
+    function get_previous_page_href( $photos ) {
+        $prevPage = $this->paramPage < $photos['pages'] ? $this->paramPage + 1 : 0;
+
         if ( $prevPage ) {
-            $url = "<a id='prevLink' href=" . $_SERVER['PHP_SELF'] . "?";
+            $href = $_SERVER['PHP_SELF'] . "?";
 
             // copy all existing query params except 'page'
             foreach ($_GET as $key=>$val) {
                 if ( $key == "page" ) {
                     continue;
                 }
-                $url .= "$key=$val&";                    
+                $href .= "$key=$val&";
             }
-            $url .= "page=$prevPage";
-            return $url . ">$inner</a>";
-        }           
+            $href .= "page=$prevPage";
+            return $href;
+        }
+    }
+
+    function get_previous_page_link( $photos, $inner = 'prev' ) {
+        return "<a id='prevLink' href=" . $this->get_next_page_href($photos) . "?" . ">$inner</a>";
     }
     
     function previous_page_link( $photos, $inner = 'prev' ) {
     	echo $this->get_previous_page_link( $photos, $inner );
     }
-   
-    function get_next_page_link( $photos, $inner = 'next' ) {
-    	$nextPage = 1 < $this->paramPage ? $this->paramPage - 1: 0;
-        
+
+    function get_next_page_href( $photos ) {
+        $nextPage = 1 < $this->paramPage ? $this->paramPage - 1: 0;
+
         if ( $nextPage ) {
-            $url = "<a id='nextLink' href=" . $_SERVER['PHP_SELF'] . "?";
-            
+            $href = $_SERVER['PHP_SELF'] . "?";
+
             // copy all existing query params except 'page'
             foreach ($_GET as $key=>$val) {
                 if ( $key == "page" ) {
                     continue;
                 }
-                $url .= "$key=$val&";                    
+                $href .= "$key=$val&";
             }
-            $url .= "page=$nextPage";
-            return $url . ">$inner</a>";
-        }           
+            $href .= "page=$nextPage";
+            return $href;
+        }
+    }
+
+    function get_next_page_link( $photos, $inner = 'next' ) {
+        return "<a id='nextLink' href=" . $this->get_next_page_href($photos) . ">$inner</a>";
     }
     
     function next_page_link( $photos, $inner = 'next' ) {
