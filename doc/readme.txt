@@ -2,8 +2,9 @@
 flogr - Customizable photo gallery for photos hosted on Flickr
 
     Author: Mike Carruth (mikecarruth [at] google [dot] com
-  Homepage: http://code.google.com/p/flogr/
- Newsgroup: http://groups.google.com/group/flogr
+  Homepage: https://github.com/mcarruth/flogr
+ Demos: http://flogr.mikecarruth.org/ or https://github.com/mcarruth/flogr/wiki/flogr-Galleries
+ 
 ===============================================================================
 
 ---------------------------------------------------------------------
@@ -53,29 +54,32 @@ flogr - Customizable photo gallery for photos hosted on Flickr
   2. Cconfigure filesystem or database caching (optional)
   3. Customize the indicated section of about.php (optional)
   4. Copy all files from into a folder in your web server.   
+  
+  See more: https://github.com/mcarruth/flogr/wiki/Setup-Instructions
             
 ---------------------------------------------------------------------
  Download
 ---------------------------------------------------------------------
 
-  http://code.google.com/p/flogr/downloads/list
+  https://github.com/mcarruth/flogr
 
 ---------------------------------------------------------------------
  Support
 ---------------------------------------------------------------------
    
   Bugs and Feature Requests
-  - http://code.google.com/p/flogr/issues/list
+  - https://github.com/mcarruth/flogr/issues
 
   Wiki
-  - http://code.google.com/p/flogr/w/list
+  - https://github.com/mcarruth/flogr/wiki
 
-  Forum
-  - http://groups.google.com/group/flogr
+  Newsgroup: http://groups.google.com/group/flogr
+  Forum: https://groups.google.com/forum/m/#!forum/flogr
     
 ---------------------------------------------------------------------
  History
 ---------------------------------------------------------------------
+	Develop History: https://github.com/mcarruth/flogr/commits/master
 
     Version 2.4 (November 7, 2010)
     * Added map to photo info overlay
