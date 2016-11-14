@@ -22,7 +22,7 @@ Go on and take it for a [spin](http://flogr.mikecarruth.org/).
 
 ##Installation
 - Download and unpack the zip locally
-- Enter your flickr user id on like 27 of 'admin/config.php'
+- Enter your flickr user id on line 27 of 'admin/config.php'
 ```php
 /**
  * Your Flickr user id and/or group id 
