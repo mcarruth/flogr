@@ -214,7 +214,7 @@ class Flogr_Page {
     }
 
     function get_previous_page_link( $photos, $inner = 'prev' ) {
-        return "<a id='prevLink' href=" . $this->get_next_page_href($photos) . "?" . ">$inner</a>";
+        return "<a id='prevLink' href=" . $this->get_previous_page_href($photos) . "?" . ">$inner</a>";
     }
     
     function previous_page_link( $photos, $inner = 'prev' ) {
