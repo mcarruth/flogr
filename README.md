@@ -1,4 +1,4 @@
-#flogr
+# flogr
 flogr is a php script that will display your public flickr photos in a customizable photo gallery you host on your website. If you use flickr but want to have a different look and feel for your photo gallery you may like flogr. 
 
 Go on and take it for a [spin](http://flogr.mikecarruth.org/).
