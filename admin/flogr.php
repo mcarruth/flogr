@@ -57,6 +57,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 /**
  * Includes
  */
+require_once('env_loader.php'); // Load environment variables first
 require_once('phpFlickr.php');
 require_once('Log.php');
 require_once('config.php');
