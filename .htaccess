@@ -1,0 +1,25 @@
+# Flogr .htaccess - Security and Configuration
+
+# Protect .env file
+<FilesMatch "^\.env">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect sensitive files
+<FilesMatch "\.(md|sh|yml|json|lock)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Enable rewrite engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+</IfModule>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Set default index
+DirectoryIndex index.php

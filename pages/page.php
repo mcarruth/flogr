@@ -7,8 +7,11 @@
  */
 
 require_once('profiler.php');
+require_once(dirname(__DIR__) . '/admin/env_loader.php');
+require_once(dirname(__DIR__) . '/admin/security.php');
 
-define('FLOGR_FLICKR_API_KEY',  '64735d606d8cc904a3f62d3ed56d56b9');
+// Load Flickr API key from environment variable for security
+define('FLOGR_FLICKR_API_KEY', env('FLICKR_API_KEY', ''));
 define('FLOGR_SIZE',            'thumbnail');
 define('FLOGR_PER_PAGE',        5);
 define('FLOGR_PHOTO_EXTRAS',    'description, license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_z, url_l, url_o');
@@ -34,37 +37,56 @@ class Flogr_Page {
     var $phpFlickr;
     var $photoList;
     
-    function Flogr_Page() {
-        
+    function __construct() {
+
         if (!$this->phpFlickr) {
+            // Validate API key is set
+            if (empty(FLOGR_FLICKR_API_KEY)) {
+                die('ERROR: FLICKR_API_KEY not set. Please copy .env.example to .env and add your Flickr API key.');
+            }
+
             $this->phpFlickr = new phpFlickr(FLOGR_FLICKR_API_KEY);
-            //$this->phpFlickr->setProxy('157.54.108.18', 80);
-            
-            if (CACHE_SQL_USER && 
-                CACHE_SQL_PASSWORD && 
-                CACHE_SQL_SERVER && 
-                CACHE_SQL_DATABASE) {
-                $mysqlConnection =    
-                    'mysql://' . 
-                    CACHE_SQL_USER . ':' . 
-                    CACHE_SQL_PASSWORD . '@' . 
-                    CACHE_SQL_SERVER . '/' . 
-                    CACHE_SQL_DATABASE;
-                                         
+
+            // Load cache settings from environment with security
+            $cacheUser = env('CACHE_SQL_USER', defined('CACHE_SQL_USER') ? CACHE_SQL_USER : '');
+            $cachePass = env('CACHE_SQL_PASSWORD', defined('CACHE_SQL_PASSWORD') ? CACHE_SQL_PASSWORD : '');
+            $cacheServer = env('CACHE_SQL_SERVER', defined('CACHE_SQL_SERVER') ? CACHE_SQL_SERVER : '');
+            $cacheDb = env('CACHE_SQL_DATABASE', defined('CACHE_SQL_DATABASE') ? CACHE_SQL_DATABASE : '');
+            $cachePath = env('CACHE_PATH', defined('CACHE_PATH') ? CACHE_PATH : '');
+
+            if ($cacheUser && $cachePass && $cacheServer && $cacheDb) {
+                // Use environment variables for cache credentials
+                $mysqlConnection = sprintf(
+                    'mysql://%s:%s@%s/%s',
+                    $cacheUser,
+                    $cachePass,
+                    $cacheServer,
+                    $cacheDb
+                );
                 $this->phpFlickr->enableCache('db', $mysqlConnection);
             }
-            else if (CACHE_PATH) {
-               $this->phpFlickr->enableCache('fs', CACHE_PATH);
+            else if ($cachePath) {
+               $this->phpFlickr->enableCache('fs', $cachePath);
             }
         }
-        
-        $this->paramPage    = $_GET['page'] ? $_GET['page'] : 1;
-        $this->paramPerPage = $_GET['perPage'] ? $_GET['perPage'] : FLOGR_THUMBNAILS_PER_PAGE;
-        $this->paramPhotoId = $_GET['photoId'];
-        $this->paramSetId   = $_GET['setId'];
-        $this->paramTags    = $_GET['tags'] ? $_GET['tags'] : FLOGR_TAGS_INCLUDE;
-        $this->paramSize    = $_GET['size'] ? $_GET['size'] : FLOGR_SIZE;
-        $this->paramSort    = $_GET['sort'] ? $_GET['sort'] : FLOGR_SORT;
+
+        // Sanitize and validate all input parameters
+        $defaultPerPage = defined('FLOGR_THUMBNAILS_PER_PAGE') ? FLOGR_THUMBNAILS_PER_PAGE : 48;
+        $defaultTags = defined('FLOGR_TAGS_INCLUDE') ? FLOGR_TAGS_INCLUDE : '';
+        $defaultSort = defined('FLOGR_SORT') ? FLOGR_SORT : '';
+
+        $this->paramPage    = validate_int($_GET['page'] ?? null, 1);
+        $this->paramPerPage = validate_int($_GET['perPage'] ?? null, $defaultPerPage);
+        $this->paramPhotoId = validate_flickr_id($_GET['photoId'] ?? null);
+        $this->paramSetId   = validate_flickr_id($_GET['setId'] ?? null);
+        $this->paramTags    = validate_tags($_GET['tags'] ?? null) ?: $defaultTags;
+        $this->paramSize    = validate_size($_GET['size'] ?? null, FLOGR_SIZE);
+        $this->paramSort    = validate_sort($_GET['sort'] ?? null, $defaultSort);
+    }
+
+    // Keep old constructor for PHP 4 compatibility
+    function Flogr_Page() {
+        $this->__construct();
     }
 
     function run_tests() {
@@ -214,7 +236,11 @@ class Flogr_Page {
     }
 
     function get_previous_page_link( $photos, $inner = 'prev' ) {
-        return "<a id='prevLink' href=" . $this->get_previous_page_href($photos) . "?" . ">$inner</a>";
+        $href = $this->get_previous_page_href($photos);
+        if ($href) {
+            return "<a id='prevLink' href='" . $href . "'>$inner</a>";
+        }
+        return "<a id='prevLink'>$inner</a>";
     }
     
     function previous_page_link( $photos, $inner = 'prev' ) {
@@ -240,7 +266,11 @@ class Flogr_Page {
     }
 
     function get_next_page_link( $photos, $inner = 'next' ) {
-        return "<a id='nextLink' href=" . $this->get_next_page_href($photos) . ">$inner</a>";
+        $href = $this->get_next_page_href($photos);
+        if ($href) {
+            return "<a id='nextLink' href='" . $href . "'>$inner</a>";
+        }
+        return "<a id='nextLink'>$inner</a>";
     }
     
     function next_page_link( $photos, $inner = 'next' ) {

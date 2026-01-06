@@ -36,7 +36,7 @@ class Flogr_User extends Flogr_Page {
         $p = new Profiler();
         $userId = $userId ? $userId : FLICKR_USER_ID;
         $inner = $inner ? $inner : $this->get_username($userId);
-        echo "<a href='{$this->get_userlink($photoId)}'>{$inner}</a>";
+        echo "<a href='" . sanitize_output($this->get_userlink($userId)) . "'>" . sanitize_output($inner) . "</a>";
     }
 
     function get_realname( $userId = null ) {

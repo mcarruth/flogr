@@ -1,4 +1,12 @@
-<?php if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); else ob_start(); ?>
+<?php
+// Enable gzip compression if supported by browser
+$accept_encoding = $_SERVER['HTTP_ACCEPT_ENCODING'] ?? '';
+if (!empty($accept_encoding) && substr_count($accept_encoding, 'gzip')) {
+    ob_start("ob_gzhandler");
+} else {
+    ob_start();
+}
+?>
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
     <head>

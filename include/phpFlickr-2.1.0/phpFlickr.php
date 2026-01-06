@@ -73,7 +73,7 @@ class phpFlickr {
      */
     var $max_cache_rows = 1000;
 
-    function phpFlickr ($api_key, $secret = NULL, $die_on_error = false)
+    function __construct ($api_key, $secret = NULL, $die_on_error = false)
     {
         //The API Key must be set before any calls can be made.  You can
         //get your own at https://www.flickr.com/services/api/misc.api_keys.html
@@ -88,8 +88,14 @@ class phpFlickr {
 
         //All calls to the API are done via the POST method using the PEAR::HTTP_Request package.
         require_once 'HTTP/Request.php';
-        $this->req =& new HTTP_Request();
+        $this->req = new HTTP_Request();
         $this->req->setMethod(HTTP_REQUEST_METHOD_POST);
+    }
+
+    // PHP 4 style constructor for backward compatibility
+    function phpFlickr ($api_key, $secret = NULL, $die_on_error = false)
+    {
+        $this->__construct($api_key, $secret, $die_on_error);
     }
 
     function enableCache($type, $connection, $cache_expire = 600, $table = 'flickr_cache')
@@ -295,6 +301,14 @@ class phpFlickr {
         //receives an array (can use the individual photo data returned
         //from an API call) and returns a URL (doesn't mean that the
         //file size exists)
+
+        // PHP 8 compatibility: Check if $photo is actually an array
+        if (!is_array($photo)) {
+            // If it's just a photo ID string, we can't build a URL without additional data
+            // Return empty string or consider fetching photo info
+            return '';
+        }
+
         $sizes = array(
             "square" => "_s",
             "thumbnail" => "_t",
@@ -304,12 +318,12 @@ class phpFlickr {
             "large" => "_b",
             "original" => "_o"
         );
-        
+
         $size = strtolower($size);
         if (!array_key_exists($size, $sizes)) {
             $size = "medium";
         }
-        
+
         if ($size == "original") {
             $url = "https://farm" . $photo['farm'] . ".static.flickr.com/" . $photo['server'] . "/" . $photo['id'] . "_" . $photo['originalsecret'] . "_o" . "." . $photo['originalformat'];
         } else {
@@ -327,7 +341,7 @@ class phpFlickr {
     }
 
     function sync_upload ($photo, $title = null, $description = null, $tags = null, $is_public = null, $is_friend = null, $is_family = null) {
-        $upload_req =& new HTTP_Request();
+        $upload_req = new HTTP_Request();
         $upload_req->setMethod(HTTP_REQUEST_METHOD_POST);
 
 
@@ -396,7 +410,7 @@ class phpFlickr {
     }
 
     function async_upload ($photo, $title = null, $description = null, $tags = null, $is_public = null, $is_friend = null, $is_family = null) {
-        $upload_req =& new HTTP_Request();
+        $upload_req = new HTTP_Request();
         $upload_req->setMethod(HTTP_REQUEST_METHOD_POST);
 
         $upload_req->setURL($this->Upload);
@@ -465,7 +479,7 @@ class phpFlickr {
 
     // Interface for new replace API method.
     function replace ($photo, $photo_id, $async = null) {
-        $upload_req =& new HTTP_Request();
+        $upload_req = new HTTP_Request();
         $upload_req->setMethod(HTTP_REQUEST_METHOD_POST);
 
         $upload_req->setURL($this->Replace);

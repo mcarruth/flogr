@@ -59,7 +59,7 @@ class Flogr_Set extends Flogr_Page {
     function get_info( $id = null ) {
     	$p = new Profiler();
     	$id = $id ? $id : $this->paramSetId;
-    	if ( !$setInfo || $setInfo['id'] != $id ) {
+    	if ( !isset($this->setInfo) || $this->setInfo['id'] != $id ) {
     		$this->setInfo = $this->phpFlickr->photosets_getInfo( $id );
     	}
     	return $this->setInfo;
@@ -129,12 +129,13 @@ class Flogr_Set extends Flogr_Page {
     function get_set_link( $set, $inner = '' ) {
         $p = new Profiler();
         $title = htmlspecialchars($set['title'], ENT_QUOTES);
-    	$inner = $inner ? $inner : $title; 
+    	$inner = $inner ? $inner : $title;
         $desc = htmlspecialchars($set['description'], ENT_QUOTES);
         $id = $set['id'];
-        $url = $this->phpFlickr->buildPhotoURL($set['id'], "Square");
+        // Pass the full $set array which contains farm, server, secret, primary fields
+        $url = $this->phpFlickr->buildPhotoURL($set, "Square");
         $string =  "<a href='" . $_SERVER['PHP_SELF'] . "?type=sets&setId={$id}' title='' rev='{$title} | {$desc}'>{$inner}</a>";
-        
+
         return $string;
     }    
     

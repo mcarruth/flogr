@@ -66,7 +66,7 @@
                         </tr>
                         <?php
                         $geo = $photo->get_geo_location();
-                        if ($geo["latitude"]) {
+                        if ($geo && isset($geo["latitude"]) && $geo["latitude"]) {
                         ?>
                             <tr>
                                 <td>Geo</td>

@@ -113,7 +113,7 @@ class Log
      * @access private
      * @since Log 1.9.13
      */
-    function _classExists($class)
+    static function _classExists($class)
     {
         if (version_compare(PHP_VERSION, '5.0.0', 'ge')) {
             return class_exists($class, false);
@@ -147,7 +147,7 @@ class Log
      * @access public
      * @since Log 1.0
      */
-    function &factory($handler, $name = '', $ident = '', $conf = array(),
+    static function &factory($handler, $name = '', $ident = '', $conf = array(),
                       $level = PEAR_LOG_DEBUG)
     {
         $handler = strtolower($handler);
@@ -165,7 +165,7 @@ class Log
 
         /* If the class exists, return a new instance of it. */
         if (Log::_classExists($class)) {
-            $obj = &new $class($name, $ident, $conf, $level);
+            $obj = new $class($name, $ident, $conf, $level);
             return $obj;
         }
 
@@ -209,7 +209,7 @@ class Log
      * @access public
      * @since Log 1.0
      */
-    function &singleton($handler, $name = '', $ident = '', $conf = array(),
+    static function &singleton($handler, $name = '', $ident = '', $conf = array(),
                         $level = PEAR_LOG_DEBUG)
     {
         static $instances;
@@ -217,7 +217,7 @@ class Log
 
         $signature = serialize(array($handler, $name, $ident, $conf, $level));
         if (!isset($instances[$signature])) {
-            $instances[$signature] = &Log::factory($handler, $name, $ident,
+            $instances[$signature] = Log::factory($handler, $name, $ident,
                                                    $conf, $level);
         }
 

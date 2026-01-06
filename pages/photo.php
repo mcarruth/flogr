@@ -82,7 +82,7 @@ class Flogr_Photo extends Flogr_Page {
     $userId = null, $extras = null, $perPage = null, $page = null) {
         $p = new Profiler();
         $this->photoList = $this->phpFlickr->favorites_getPublicList(
-                        $user ? $user : FLICKR_USER_ID,
+                        $userId ? $userId : FLICKR_USER_ID,
                         $extras ? $extras : FLOGR_PHOTO_EXTRAS,
                         $perPage ? $perPage : $this->paramPerPage,
                         $page ? $page : $this->paramPage);
@@ -286,13 +286,13 @@ class Flogr_Photo extends Flogr_Page {
     function exif($photoId = null) {
         $p = new Profiler();
         $exif = $this->get_exif($photoId);
-        $exifData = null;
+        $exifData = '';
         if ($exif['exif']) {
             foreach ($exif['exif'] as $exifItem) {
                 if (stristr(FLOGR_EXIF, $exifItem['label']) && !stristr($exifData, $exifItem['label'])) {
                     $exifData .= "<tr>";
                     $exifData .= "<td>" . $exifItem['label'] . "</td>";
-                    if ($exifItem['clean']) {
+                    if (isset($exifItem['clean']) && $exifItem['clean']) {
                         $exifData .= "<td>" . $exifItem['clean'] . "</td>";
                     } else {
                         $exifData .= "<td>" . $exifItem['raw'] . "</td>";
@@ -509,7 +509,7 @@ class Flogr_Photo extends Flogr_Page {
     function get_comments_count($photoId = null) {
         $p = new Profiler();
         $comments = $this->get_comments($photoId);
-        return count($comments["comment"]);
+        return isset($comments["comment"]) ? count($comments["comment"]) : 0;
     }
 
     /**
@@ -537,8 +537,8 @@ class Flogr_Photo extends Flogr_Page {
     $photoId = null, $before = '<li>', $sep = ' says:<br/>', $after = '</li>', $commentLink = 'true', $buddyIcon = 'true') {
         $p = new Profiler();
         $comments = $this->get_comments($photoId);
-        if ($comments['comment']) {
-            $comment_list = null;
+        $comment_list = '';
+        if (isset($comments['comment']) && $comments['comment']) {
             foreach ($comments['comment'] as $comment) {
                 $commentAuthor = "<a href='{$comment['permalink']}'><b>{$comment['authorname']}</b></a>";
                 $commentText = $comment['_content'];
@@ -711,7 +711,7 @@ class Flogr_Photo extends Flogr_Page {
 
     function get_geo_location($id = null) {
         $p = new Profiler();
-        $photo = $this->get_photo($photoId);
+        $photo = $this->get_photo($id);
         $geo = array("latitude" => $photo["latitude"], "longitude" => $photo["longitude"], "accuracy" => $photo["accuracy"]);
         if ($geo["latitude"] !== 0 && $geo["longitude"] !== 0) {
             return $geo;

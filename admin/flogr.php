@@ -17,17 +17,17 @@ function REQUIRED_SETTING($name, $value) {
     if (!isset($value) || $value == '') {
         die("<p>You need to set <b>'{$name}'</b> in <code>admin\config.php</code> before you can being using flogr.</p>");
     }
-    define($name, $value, true);
+    define($name, $value);
 }
 
 /**
  * Defines an optional constant - wrapper for define().
  *
- * @param string name   Name of constant   
+ * @param string name   Name of constant
  * @param string value  Value for constant
  */
 function OPTIONAL_SETTING($name, $value) {
-    define($name, $value, true);
+    define($name, $value);
 }
 
 /**
@@ -49,9 +49,10 @@ ini_set('include_path',
         ini_get('include_path'));
 
 /**
- * Hide PHP warnings...nobody's perfect :)
+ * Set error reporting to show errors and warnings, but not notices
+ * This helps catch security issues and bugs during development
  */
-error_reporting(E_ERROR);
+error_reporting(E_ALL & ~E_NOTICE);
 
 /**
  * Includes
@@ -59,6 +60,10 @@ error_reporting(E_ERROR);
 require_once('phpFlickr.php');
 require_once('Log.php');
 require_once('config.php');
+require_once('security.php');
+
+// Set security headers
+set_security_headers();
 
 /**
  * Create the flogr instance and let's get going
@@ -111,46 +116,65 @@ class Flogr {
     );
 
     function __construct() {
-
-        $this->_logger = &Log::singleton('composite', '', '', null, $this->_logLevels[FLOGR_LOG_LEVEL]);
+        // PEAR Log methods are now properly declared as static
+        $this->_logger = Log::singleton('composite', '', '', null, $this->_logLevels[FLOGR_LOG_LEVEL]);
         $keys = array_keys($this->_logHandlers);
         foreach ($keys as $key) {
-            $handler = &Log::singleton($key, '', '', null, $this->_logLevels[FLOGR_LOG_LEVEL]);
+            $handler = Log::singleton($key, '', '', null, $this->_logLevels[FLOGR_LOG_LEVEL]);
             $this->_logHandlers[$key] = $handler;
             $this->_logger->addChild($handler);
         }
     }
 
     function logInfo($string) {
-        $this->_logger->info($string);
+        if (!defined('FLOGR_DISABLE_LOGGING') || !FLOGR_DISABLE_LOGGING) {
+            $this->_logger->info($string);
+        }
     }
 
     function logWarning($string) {
-        $this->_logger->warning($string);
+        if (!defined('FLOGR_DISABLE_LOGGING') || !FLOGR_DISABLE_LOGGING) {
+            $this->_logger->warning($string);
+        }
     }
 
     function logErr($string) {
-        $this->_logger->err($string);
+        if (!defined('FLOGR_DISABLE_LOGGING') || !FLOGR_DISABLE_LOGGING) {
+            $this->_logger->err($string);
+        }
     }
 
     function logDebug($string) {
-        $this->_logger->debug($string);
+        if (!defined('FLOGR_DISABLE_LOGGING') || !FLOGR_DISABLE_LOGGING) {
+            $this->_logger->debug($string);
+        }
     }
 
     function run() {
         if (defined('FLICKR_USER_ID') || defined('FLICKR_GROUP_ID')) {
-            if ($_GET['type'] != 'rss' && $_GET['type'] != 'map_data') {
+            // Sanitize and validate the type parameter
+            $type = isset($_GET['type']) ? validate_string($_GET['type'], '', 50) : '';
+
+            // Validate that the type exists in our page map to prevent arbitrary file inclusion
+            if (!array_key_exists($type, $this->_pageMap)) {
+                // Default to photo page if type is invalid
+                $type = '';
+            }
+
+            if ($type != 'rss' && $type != 'map_data') {
                 include('header.php');
                 include(SITE_THEME_PATH . 'header.php');
             }
 
-            include($this->_pageMap[$_GET['type']]);
-            include(SITE_THEME_PATH . $this->_pageMap[$_GET['type']]);
+            include($this->_pageMap[$type]);
+            include(SITE_THEME_PATH . $this->_pageMap[$type]);
 
-            if ($_GET['type'] != 'rss' && $_GET['type'] != 'map_data') {
+            if ($type != 'rss' && $type != 'map_data') {
                 include(SITE_THEME_PATH . 'footer.php');
                 include('footer.php');
             }
+        } else {
+            die('<p>ERROR: FLICKR_USER_ID or FLICKR_GROUP_ID must be set in admin/config.php before using flogr.</p>');
         }
     }
 

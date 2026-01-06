@@ -467,7 +467,7 @@ class DB
             return $tmp;
         }
 
-        @$obj =& new $classname;
+        @$obj = new $classname;
 
         foreach ($options as $option => $value) {
             $test = $obj->setOption($option, $value);
@@ -544,7 +544,7 @@ class DB
             return $tmp;
         }
 
-        @$obj =& new $classname;
+        @$obj = new $classname;
 
         foreach ($options as $option => $value) {
             $test = $obj->setOption($option, $value);
@@ -585,7 +585,7 @@ class DB
      *
      * @return bool  whether $value is DB_Error object
      */
-    function isError($value)
+    static function isError($value)
     {
         return is_a($value, 'DB_Error');
     }

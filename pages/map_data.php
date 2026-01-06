@@ -1,5 +1,14 @@
 <?php
+// Disable output buffering and profiling for clean XML output
+if (ob_get_level()) {
+    ob_end_clean();
+}
+
 header('Content-type: text/xml; charset=utf-8');
+
+// Disable profiler logging to prevent JavaScript output in XML
+define('FLOGR_DISABLE_LOGGING', true);
+
 $doc = new DOMDocument("1.0");
 $doc->formatOutput = true;
 $markers = $doc->createElement("markers");

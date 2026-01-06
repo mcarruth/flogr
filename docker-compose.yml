@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  flogr:
+    image: php:8.1-apache
+    container_name: flogr-test
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    restart: unless-stopped
+    command: >
+      bash -c "a2enmod rewrite &&
+      echo '<Directory /var/www/html>
+        AllowOverride All
+        Require all granted
+      </Directory>' > /etc/apache2/conf-available/flogr.conf &&
+      a2enconf flogr &&
+      apache2-foreground"
+
+  # Optional: MySQL for caching
+  # Uncomment if you want to test MySQL caching
+  # mysql:
+  #   image: mysql:8.0
+  #   container_name: flogr-mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: rootpassword
+  #     MYSQL_DATABASE: flogr_cache
+  #     MYSQL_USER: flogr
+  #     MYSQL_PASSWORD: flogr_password
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #   restart: unless-stopped
+
+# volumes:
+#   mysql_data:

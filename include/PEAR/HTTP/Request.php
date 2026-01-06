@@ -47,16 +47,16 @@ require_once 'PEAR.php';
 require_once 'Net/Socket.php';
 require_once 'Net/URL.php';
 
-define('HTTP_REQUEST_METHOD_GET',     'GET',     true);
-define('HTTP_REQUEST_METHOD_HEAD',    'HEAD',    true);
-define('HTTP_REQUEST_METHOD_POST',    'POST',    true);
-define('HTTP_REQUEST_METHOD_PUT',     'PUT',     true);
-define('HTTP_REQUEST_METHOD_DELETE',  'DELETE',  true);
-define('HTTP_REQUEST_METHOD_OPTIONS', 'OPTIONS', true);
-define('HTTP_REQUEST_METHOD_TRACE',   'TRACE',   true);
+define('HTTP_REQUEST_METHOD_GET',     'GET');
+define('HTTP_REQUEST_METHOD_HEAD',    'HEAD');
+define('HTTP_REQUEST_METHOD_POST',    'POST');
+define('HTTP_REQUEST_METHOD_PUT',     'PUT');
+define('HTTP_REQUEST_METHOD_DELETE',  'DELETE');
+define('HTTP_REQUEST_METHOD_OPTIONS', 'OPTIONS');
+define('HTTP_REQUEST_METHOD_TRACE',   'TRACE');
 
-define('HTTP_REQUEST_HTTP_VER_1_0', '1.0', true);
-define('HTTP_REQUEST_HTTP_VER_1_1', '1.1', true);
+define('HTTP_REQUEST_HTTP_VER_1_0', '1.0');
+define('HTTP_REQUEST_HTTP_VER_1_1', '1.1');
 
 class HTTP_Request {
 
@@ -223,9 +223,9 @@ class HTTP_Request {
     * </ul>
     * @access public
     */
-    function HTTP_Request($url = '', $params = array())
+    function __construct($url = '', $params = array())
     {
-        $this->_sock           = &new Net_Socket();
+        $this->_sock           = new Net_Socket();
         $this->_method         =  HTTP_REQUEST_METHOD_GET;
         $this->_http           =  HTTP_REQUEST_HTTP_VER_1_1;
         $this->_requestHeaders = array();
@@ -273,7 +273,13 @@ class HTTP_Request {
             $this->addHeader('Accept-Encoding', 'gzip');
         }
     }
-    
+
+    // PHP 4 compatibility
+    function HTTP_Request($url = '', $params = array())
+    {
+        $this->__construct($url, $params);
+    }
+
     /**
     * Generates a Host header for HTTP/1.1 requests
     *
@@ -321,7 +327,7 @@ class HTTP_Request {
     */
     function setURL($url)
     {
-        $this->_url = &new Net_URL($url, $this->_useBrackets);
+        $this->_url = new Net_URL($url, $this->_useBrackets);
 
         if (!empty($this->_url->user) || !empty($this->_url->pass)) {
             $this->setBasicAuth($this->_url->user, $this->_url->pass);
@@ -467,6 +473,10 @@ class HTTP_Request {
     function _arrayMapRecursive($callback, $value)
     {
         if (!is_array($value)) {
+            // PHP 8.1: urlencode() doesn't accept null, convert to empty string
+            if ($value === null) {
+                $value = '';
+            }
             return call_user_func($callback, $value);
         } else {
             $map = array();
@@ -599,7 +609,7 @@ class HTTP_Request {
         $this->_notify('sentRequest');
 
         // Read the response
-        $this->_response = &new HTTP_Response($this->_sock, $this->_listeners);
+        $this->_response = new HTTP_Response($this->_sock, $this->_listeners);
         if (PEAR::isError($err = $this->_response->process($this->_saveBody && $saveBody)) ) {
             return $err;
         }
@@ -618,10 +628,10 @@ class HTTP_Request {
 
             // Absolute URL
             if (preg_match('/^https?:\/\//i', $redirect)) {
-                $this->_url = &new Net_URL($redirect);
+                $this->_url = new Net_URL($redirect);
                 $this->addHeader('Host', $this->_generateHostHeader());
             // Absolute path
-            } elseif ($redirect{0} == '/') {
+            } elseif ($redirect[0] == '/') {
                 $this->_url->path = $redirect;
             
             // Relative path
@@ -756,7 +766,7 @@ class HTTP_Request {
             // "normal" POST request
             if (!isset($boundary)) {
                 $postdata = implode('&', array_map(
-                    create_function('$a', 'return $a[0] . \'=\' . $a[1];'), 
+                    function($a) { return $a[0] . '=' . $a[1]; },
                     $this->_flattenArray('', $this->_postData)
                 ));
 
@@ -954,10 +964,16 @@ class HTTP_Response
     * @param  array                 listeners attached to request
     * @return mixed PEAR Error on error, true otherwise
     */
+    function __construct(&$sock, &$listeners)
+    {
+        $this->_sock      = $sock;
+        $this->_listeners = $listeners;
+    }
+
+    // PHP 4 style constructor for backward compatibility
     function HTTP_Response(&$sock, &$listeners)
     {
-        $this->_sock      =& $sock;
-        $this->_listeners =& $listeners;
+        $this->__construct($sock, $listeners);
     }
 
 
