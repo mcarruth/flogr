@@ -49,10 +49,20 @@ ini_set('include_path',
         ini_get('include_path'));
 
 /**
- * Set error reporting to show errors and warnings, but not notices
- * This helps catch security issues and bugs during development
+ * Set error reporting based on environment
+ * Production: Only log errors, don't display them
+ * Development: Show errors and warnings, but not notices
  */
-error_reporting(E_ALL & ~E_NOTICE);
+if (getenv('RENDER') || !empty($_ENV['RENDER'])) {
+    // Production environment (Render)
+    error_reporting(E_ERROR | E_PARSE);
+    ini_set('display_errors', '0');
+    ini_set('log_errors', '1');
+} else {
+    // Development environment
+    error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+    ini_set('display_errors', '1');
+}
 
 /**
  * Includes

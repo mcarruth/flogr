@@ -92,20 +92,23 @@ function validate_sort($input, $default = '') {
  * Set security headers
  */
 function set_security_headers() {
-    // Prevent clickjacking
-    header('X-Frame-Options: SAMEORIGIN');
+    // Only set headers if they haven't been sent yet
+    if (!headers_sent()) {
+        // Prevent clickjacking
+        header('X-Frame-Options: SAMEORIGIN');
 
-    // Enable XSS protection
-    header('X-XSS-Protection: 1; mode=block');
+        // Enable XSS protection
+        header('X-XSS-Protection: 1; mode=block');
 
-    // Prevent MIME type sniffing
-    header('X-Content-Type-Options: nosniff');
+        // Prevent MIME type sniffing
+        header('X-Content-Type-Options: nosniff');
 
-    // Referrer policy
-    header('Referrer-Policy: strict-origin-when-cross-origin');
+        // Referrer policy
+        header('Referrer-Policy: strict-origin-when-cross-origin');
 
-    // Content Security Policy (relaxed for external resources like Flickr)
-    header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval' *.flickr.com *.staticflickr.com maps.googleapis.com; img-src * data:; font-src 'self' data:;");
+        // Content Security Policy (relaxed for external resources like Flickr)
+        header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval' *.flickr.com *.staticflickr.com maps.googleapis.com; img-src * data:; font-src 'self' data:;");
+    }
 }
 
 /**
