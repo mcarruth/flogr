@@ -109,10 +109,10 @@ OPTIONAL_SETTING('FLOGR_PHOTOSETS_INCLUDE', '');
 REQUIRED_SETTING('FLOGR_TAGS_COUNT', 200);
 
 /* Tags to include - separate multiple tags with commas */
-OPTIONAL_SETTING('FLOGR_TAGS_INCLUDE', '');
+OPTIONAL_SETTING('FLOGR_TAGS_INCLUDE', 'portfolio');
 
 /* Hide FLOGR_TAGS_INCLUDE from tag cloud */
-OPTIONAL_SETTING('FLOGR_TAGS_INCLUDE_HIDE', '');
+OPTIONAL_SETTING('FLOGR_TAGS_INCLUDE_HIDE', 'portfolio');
 
 /* PHP date format - http://us2.php.net/date */
 REQUIRED_SETTING('FLOGR_DATE_FORMAT', 'F j, Y');
