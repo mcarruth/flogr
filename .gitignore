@@ -1,1 +1,44 @@
+# Environment variables (sensitive credentials)
 .env
+.env.local
+.env.*.local
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.buildpath
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# PHP
+*.log
+composer.phar
+vendor/
+
+# Cache directories
+cache/
+tmp/
+temp/
+
+# User-uploaded files (if any)
+uploads/
+
+# Build artifacts
+*.zip
+*.tar.gz
+
+# Docker
+.dockerignore
