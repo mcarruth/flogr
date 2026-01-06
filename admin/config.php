@@ -24,8 +24,10 @@
  * 	Provide both your user and group ids and flogr will show only the photos 
  * 	you have posted to the given group.
  */
-OPTIONAL_SETTING('FLICKR_USER_ID',  '95137114@N00');
-OPTIONAL_SETTING('FLICKR_GROUP_ID', '');
+// Allow FLICKR_USER_ID to be set via environment variable (for Render/Docker deployments)
+// or fall back to hardcoded value for traditional hosting
+OPTIONAL_SETTING('FLICKR_USER_ID',  env('FLICKR_USER_ID', '95137114@N00'));
+OPTIONAL_SETTING('FLICKR_GROUP_ID', env('FLICKR_GROUP_ID', ''));
 //OPTIONAL_SETTING('FLICKR_USER_ID',  '');
 //OPTIONAL_SETTING('FLICKR_GROUP_ID', '82648219@N00');
 

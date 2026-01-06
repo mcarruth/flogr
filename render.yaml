@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: flogr
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: FLICKR_API_KEY
+        sync: false
+      - key: FLICKR_USER_ID
+        sync: false
+      - key: CACHE_PATH
+        value: /tmp/flogr_cache
+    # Optional: Set these if you want MySQL caching
+    # - key: CACHE_SQL_USER
+    #   sync: false
+    # - key: CACHE_SQL_PASSWORD
+    #   sync: false
+    # - key: CACHE_SQL_SERVER
+    #   sync: false
+    # - key: CACHE_SQL_DATABASE
+    #   sync: false
