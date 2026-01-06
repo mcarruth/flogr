@@ -38,7 +38,22 @@ REQUIRED_SETTING('SITE_TITLE',         'Flogr');
 REQUIRED_SETTING('SITE_DESCRIPTION',   'A photoblog application built on Flickr');
 REQUIRED_SETTING('SITE_THEME',         'blackstripe2');
 REQUIRED_SETTING('SITE_THEME_PATH',    'themes/' . SITE_THEME . '/');
-$url = "http://". $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
+
+// Build SITE_URL - handle standard ports (80, 443) and proxied environments (Render, Docker)
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ||
+            (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ? 'https' : 'http';
+$port = $_SERVER['SERVER_PORT'];
+$host = $_SERVER['SERVER_NAME'];
+
+// Don't include port if it's standard (80, 443) or behind a proxy
+if (($protocol === 'http' && $port == 80) ||
+    ($protocol === 'https' && $port == 443) ||
+    !empty($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+    $url = $protocol . "://" . $host . $_SERVER['REQUEST_URI'];
+} else {
+    $url = $protocol . "://" . $host . ':' . $port . $_SERVER['REQUEST_URI'];
+}
+
 REQUIRED_SETTING('SITE_URL',           substr($url, 0, strrpos($url, "/")));
 
 /************************************************************************
